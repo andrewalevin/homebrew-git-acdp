@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Check if the current directory is a Git repository
+if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    echo "Error: The current directory is not a Git repository."
+    echo "Please run 'git init' or navigate to a Git-initialized directory."
+    exit 1
+fi
+
+# Get the current date and time with nanoseconds
+DATE=$(date +"%Y-%m-%d %T %N")
+
+# Add, commit, and push changes
+git add .
+git commit -m "$DATE"
+git push
